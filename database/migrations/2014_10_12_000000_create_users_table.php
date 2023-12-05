@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('bio');
-            $table->string('image');
+            $table->string('image')->nullable();
             //https://github.com/PHP-Open-Source-Saver/jwt-auth
             $table->rememberToken();
             $table->timestamps();
