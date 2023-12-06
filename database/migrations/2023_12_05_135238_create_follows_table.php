@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('follows', function (Blueprint $table) {
-            $table->foreignId('follow_user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('follower_user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('follow_user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('follower_user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamp('created_at');
             $table->unique(['follow_user_id', 'follower_user_id']);
             $table->unique(['follower_user_id', 'follow_user_id']);
