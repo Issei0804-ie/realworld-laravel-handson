@@ -12,9 +12,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'username' => 'cani',
-            'email' => 'cani@example.com'
-        ]);
+        $user1 = User::factory(10)->create()->first();
+        $me = User::factory()
+            ->create([
+                'username' => 'cani',
+                'email' => 'cani@example.com'
+            ]);
+        $me->following()->attach($user1);
+        $user1->following()->attach($me);
     }
 }
