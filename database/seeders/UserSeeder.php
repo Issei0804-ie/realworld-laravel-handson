@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -13,8 +14,11 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $tags = Tag::factory(10)->create();
+        // 3つだけ取り出す
+        $tags1 = $tags->take(3);
+
         $user1 = User::factory(10)
-            ->has(Article::factory()->count(2))
             ->create()
             ->first();
         $me = User::factory()
@@ -24,5 +28,13 @@ class UserSeeder extends Seeder
             ]);
         $me->following()->attach($user1);
         $user1->following()->attach($me);
+
+        Article::factory(2)
+            ->create([
+                'author' => $me->id
+            ])
+            ->each(function (Article $article) use ($tags1) {
+                $article->tags()->attach($tags1);
+            });
     }
 }

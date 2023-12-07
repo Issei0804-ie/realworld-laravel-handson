@@ -20,4 +20,9 @@ class Article extends Model
     {
         return $this->belongsTo(User::class, 'author');
     }
+
+    public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
