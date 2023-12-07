@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'follows', 'follower_user_id', 'follow_user_id');
     }
+
+    public function articles(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Article::class, 'author');
+    }
 }
