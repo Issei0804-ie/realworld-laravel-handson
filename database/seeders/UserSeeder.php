@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -29,12 +30,17 @@ class UserSeeder extends Seeder
         $me->following()->attach($user1);
         $user1->following()->attach($me);
 
-        Article::factory(2)
+        $articles = Article::factory(2)
             ->create([
                 'author' => $me->id
             ])
             ->each(function (Article $article) use ($tags1) {
                 $article->tags()->attach($tags1);
             });
+
+        Comment::factory(10)->create([
+            'commented_article_id' =>$articles->first()->id,
+            'commented_user_id' => $user1->id
+        ]);
     }
 }
