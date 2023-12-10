@@ -19,5 +19,6 @@ Route::name('api.')->group(function () {
         Route::prefix('/login')->name('login.')->group(function () {
             Route::post('/', \App\Http\Controllers\Api\Users\Login\StoreController::class)->name('store');
         });
+        Route::post('/', \App\Http\Controllers\Api\Users\StoreController::class)->name('store');
     });
 });
