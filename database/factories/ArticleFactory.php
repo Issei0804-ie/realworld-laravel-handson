@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 class ArticleFactory extends Factory
 {
     use WithFaker;
+
     protected $model = Article::class;
 
     public function definition(): array

@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'bio',
-        'image_s3_path'
+        'image_s3_path',
     ];
 
     /**

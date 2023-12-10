@@ -23,8 +23,8 @@ class StoreControllerTest extends TestCase
             'user' => [
                 'username' => $username,
                 'email' => $email,
-                'password' => $password
-            ]
+                'password' => $password,
+            ],
         ])->assertStatus(200)
             ->assertJson([
                 'user' => [
@@ -39,9 +39,9 @@ class StoreControllerTest extends TestCase
                     'token',
                     'username',
                     'bio',
-                    'image'
-                ]
-                ]
+                    'image',
+                ],
+            ]
             );
     }
 }

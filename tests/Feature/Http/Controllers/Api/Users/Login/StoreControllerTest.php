@@ -8,7 +8,6 @@ use Tests\TestCase;
 
 class StoreControllerTest extends TestCase
 {
-
     use RefreshDatabase;
 
     #[Test]
@@ -20,8 +19,8 @@ class StoreControllerTest extends TestCase
         $this->post(route('api.users.login.store'), [
             'user' => [
                 'email' => $user->email,
-                'password' => 'password'
-            ]
+                'password' => 'password',
+            ],
         ])->assertStatus(200)
             ->assertJson([
                 'user' => [
@@ -29,7 +28,7 @@ class StoreControllerTest extends TestCase
                     'username' => $user->username,
                     'bio' => $user->bio,
                     'image' => $user->image_s3_path,
-                ]
+                ],
             ])
             ->assertJsonStructure([
                 'user' => [
@@ -37,8 +36,8 @@ class StoreControllerTest extends TestCase
                     'token',
                     'username',
                     'bio',
-                    'image'
-                ]
+                    'image',
+                ],
             ]);
 
         $this->assertAuthenticated();
@@ -51,13 +50,13 @@ class StoreControllerTest extends TestCase
         $this->post(route('api.users.login.store'), [
             'user' => [
                 'email' => 'example@example.com',
-                'password' => 'password'
-            ]
+                'password' => 'password',
+            ],
         ])->assertStatus(422)
             ->assertJsonStructure([
                 'errors' => [
-                    'message'
-                ]
+                    'message',
+                ],
             ]);
         $this->assertGuest();
     }
@@ -71,13 +70,13 @@ class StoreControllerTest extends TestCase
         $this->post(route('api.users.login.store'), [
             'user' => [
                 'email' => $user->email,
-                'password' => 'wrong_password'
-            ]
+                'password' => 'wrong_password',
+            ],
         ])->assertStatus(422)
             ->assertJsonStructure([
                 'errors' => [
-                    'message'
-                ]
+                    'message',
+                ],
             ]);
         $this->assertGuest();
     }
@@ -88,8 +87,8 @@ class StoreControllerTest extends TestCase
         $this->assertGuest();
         $this->post(route('api.users.login.store'), [
             'user' => [
-                'email' => 'hoge@example.com'
-            ]
+                'email' => 'hoge@example.com',
+            ],
         ])->assertStatus(422);
 
         $this->assertGuest();

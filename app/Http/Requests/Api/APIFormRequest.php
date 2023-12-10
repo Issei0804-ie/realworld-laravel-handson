@@ -9,7 +9,7 @@ class APIFormRequest extends FormRequest
     public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator): void
     {
         $response = response()->json([
-            'errors' => $validator->errors()
+            'errors' => $validator->errors(),
         ], 422);
         throw new \Illuminate\Validation\ValidationException($validator, $response);
     }

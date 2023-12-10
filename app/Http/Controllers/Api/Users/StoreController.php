@@ -18,6 +18,7 @@ class StoreController extends Controller
             'bio' => '',
             'image_s3_path' => '',
         ]);
+
         return response()->json([
             'user' => [
                 'email' => $user->email,
@@ -25,7 +26,7 @@ class StoreController extends Controller
                 'username' => $user->username,
                 'bio' => $user->bio,
                 'image' => $user->image_s3_path,
-            ]
+            ],
         ]);
 
     }

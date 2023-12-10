@@ -10,10 +10,10 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-      'title',
-      'description',
-      'body',
-      'author'
+        'title',
+        'description',
+        'body',
+        'author',
     ];
 
     public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany

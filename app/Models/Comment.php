@@ -12,7 +12,7 @@ class Comment extends Model
     protected $fillable = [
         'commented_article_id',
         'commented_user_id',
-        'body'
+        'body',
     ];
 
     public function commentedArticle(): \Illuminate\Database\Eloquent\Relations\BelongsTo

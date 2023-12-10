@@ -13,6 +13,7 @@ class StoreController extends Controller
         $validatedValue = $request->validated();
         if (Auth::attempt(['email' => $validatedValue['user']['email'], 'password' => $validatedValue['user']['password']])) {
             $user = Auth::user();
+
             return response()->json([
                 'user' => [
                     'email' => $user->email,
@@ -20,13 +21,14 @@ class StoreController extends Controller
                     'username' => $user->username,
                     'bio' => $user->bio,
                     'image' => $user->image_s3_path,
-                ]
+                ],
             ]);
         }
+
         return response()->json([
             'errors' => [
-                'message' => ['メールアドレスまたはパスワードが正しくありません。']
-            ]
+                'message' => ['メールアドレスまたはパスワードが正しくありません。'],
+            ],
         ], 422);
     }
 }

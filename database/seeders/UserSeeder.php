@@ -25,22 +25,22 @@ class UserSeeder extends Seeder
         $me = User::factory()
             ->create([
                 'username' => 'cani',
-                'email' => 'cani@example.com'
+                'email' => 'cani@example.com',
             ]);
         $me->following()->attach($user1);
         $user1->following()->attach($me);
 
         $articles = Article::factory(2)
             ->create([
-                'author' => $me->id
+                'author' => $me->id,
             ])
             ->each(function (Article $article) use ($tags1) {
                 $article->tags()->attach($tags1);
             });
 
         Comment::factory(10)->create([
-            'commented_article_id' =>$articles->first()->id,
-            'commented_user_id' => $user1->id
+            'commented_article_id' => $articles->first()->id,
+            'commented_user_id' => $user1->id,
         ]);
     }
 }
