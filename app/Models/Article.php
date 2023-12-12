@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
@@ -29,5 +31,15 @@ class Article extends Model
     public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    protected function title(): Attribute
+    {
+        return Attribute::make(
+            set: fn ($value) => [
+                'title' => $value,
+                'slug' => Str::slug($value),
+            ],
+        );
     }
 }
