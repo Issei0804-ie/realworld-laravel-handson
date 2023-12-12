@@ -46,7 +46,27 @@ class User extends Authenticatable
 
     public function following(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'follows', 'follow_user_id', 'follower_user_id');
+        return $this->belongsToMany(
+            User::class,
+            'follows',
+            'follower_user_id',
+            'follow_user_id',
+        );
+    }
+
+    public function isFollowing(User $user):bool
+    {
+        return $this->following()->where('follow_user_id', $user->id)->exists();
+    }
+
+    public function followYou(User $user): void
+    {
+        $this->following()->attach($user->id);
+    }
+
+    public function unfollowYou(User $user): void
+    {
+        $this->following()->detach($user->id);
     }
 
     /**
@@ -54,7 +74,12 @@ class User extends Authenticatable
      */
     public function followers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'follows', 'follower_user_id', 'follow_user_id');
+        return $this->belongsToMany(User::class, 'follows', 'follow_user_id', 'follower_user_id');
+    }
+
+    public function favoriteArticles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Article::class, 'article_favorites');
     }
 
     public function articles(): \Illuminate\Database\Eloquent\Relations\HasMany
