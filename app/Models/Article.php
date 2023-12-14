@@ -15,7 +15,7 @@ class Article extends Model
         'title',
         'description',
         'body',
-        'author',
+        'author_id',
     ];
 
     public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -25,7 +25,7 @@ class Article extends Model
 
     public function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class, 'author');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
 
         $articles = Article::factory(2)
             ->create([
-                'author' => $me->id,
+                'author_id' => $me->id,
             ])
             ->each(function (Article $article) use ($tags1) {
                 $article->tags()->attach($tags1);

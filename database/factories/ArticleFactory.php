@@ -20,7 +20,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'description' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
-            'author' => User::factory(),
+            'author_id' => User::factory(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
