@@ -10,6 +10,7 @@ class IndexController extends Controller
     public function __invoke()
     {
         $user = auth()->user();
+
         return response()->json(UserResource::make($user));
     }
 }

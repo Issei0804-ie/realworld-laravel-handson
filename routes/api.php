@@ -30,7 +30,7 @@ Route::name('api.')->group(function () {
 });
 
 // 認証あり
-Route::name('api.')->middleware('auth')->group(function (){
+Route::name('api.')->middleware('auth')->group(function () {
     Route::prefix('/users')->name('users.')->group(function () {
         Route::get('/', \App\Http\Controllers\Api\Users\IndexController::class)
             ->name('index');

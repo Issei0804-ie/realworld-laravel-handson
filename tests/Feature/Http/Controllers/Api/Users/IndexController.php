@@ -11,7 +11,6 @@ class IndexController extends TestCase
 {
     use RefreshDatabase;
 
-
     #[Test]
     public function ログインしている状態でリクエストすると、自分のユーザー情報が返ってくる()
     {
@@ -30,7 +29,6 @@ class IndexController extends TestCase
                 ],
             ]);
     }
-
 
     #[Test]
     public function ログインしていない状態でリクエストすると、401エラーが返ってくること()

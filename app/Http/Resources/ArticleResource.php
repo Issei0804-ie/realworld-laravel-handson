@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ArticleResource extends JsonResource
 {
-    public function __construct(private User|null $user, $resource)
+    public function __construct(private ?User $user, $resource)
     {
         parent::__construct($resource);
     }
@@ -16,6 +16,7 @@ class ArticleResource extends JsonResource
     public function toArray(Request $request): array
     {
         $tagList = $this->tags->map(fn ($tag) => $tag->name)->toArray();
+
         return [
             'article' => [
                 'slug' => $this->slug,
@@ -32,8 +33,8 @@ class ArticleResource extends JsonResource
                     'bio' => $this->author->bio,
                     'image' => $this->author->image_s3_path,
                     'following' => $this->author->following,
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

@@ -10,6 +10,7 @@ use Tests\TestCase;
 class UserTest extends TestCase
 {
     use RefreshDatabase;
+
     #[Test]
     public function 任意のユーザーをフォローして、isFollowingがtrueになることを確認する()
     {
@@ -35,8 +36,8 @@ class UserTest extends TestCase
         $me->followYou($followTarget);
 
         $this->assertDatabaseHas('follows', [
-           'follow_user_id' => $followTarget->id,
-           'follower_user_id' => $me->id,
+            'follow_user_id' => $followTarget->id,
+            'follower_user_id' => $me->id,
         ]);
     }
 

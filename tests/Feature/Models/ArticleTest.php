@@ -12,6 +12,7 @@ use Tests\TestCase;
 class ArticleTest extends TestCase
 {
     use RefreshDatabase;
+
     #[Test]
     public function 任意の記事のお気に入りを行ったUserを取得できる()
     {
@@ -71,9 +72,8 @@ class ArticleTest extends TestCase
         $this->assertDatabaseEmpty('article_favorites');
         $article->favorite($user);
         $this->assertDatabaseHas('article_favorites', [
-           'user_id' => $user->id,
-           'article_id' => $article->id,
+            'user_id' => $user->id,
+            'article_id' => $article->id,
         ]);
     }
-
 }

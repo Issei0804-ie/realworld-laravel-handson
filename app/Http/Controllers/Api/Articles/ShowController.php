@@ -11,6 +11,7 @@ class ShowController extends Controller
     public function __invoke(string $slug)
     {
         $article = Article::where('slug', $slug)->firstOrFail();
+
         return response()->json(new ArticleResource(null, $article));
     }
 }

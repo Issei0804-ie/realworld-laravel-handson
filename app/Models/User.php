@@ -54,7 +54,7 @@ class User extends Authenticatable
         );
     }
 
-    public function isFollowing(User $user):bool
+    public function isFollowing(User $user): bool
     {
         return $this->following()->where('follow_user_id', $user->id)->exists();
     }
