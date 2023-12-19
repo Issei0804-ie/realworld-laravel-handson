@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api\Users;
+namespace Tests\Feature\Http\Controllers\Api\User;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +17,7 @@ class IndexController extends TestCase
         $user = User::factory()->create();
         $this->assertGuest();
         $this->actingAs($user)
-            ->get(route('api.users.index'))
+            ->get(route('api.user.index'))
             ->assertOk()
             ->assertJsonStructure([
                 'user' => [
@@ -34,6 +34,6 @@ class IndexController extends TestCase
     public function ログインしていない状態でリクエストすると、401エラーが返ってくること()
     {
         $this->assertGuest();
-        $this->get(route('api.users.index'))->assertUnauthorized();
+        $this->get(route('api.user.index'))->assertUnauthorized();
     }
 }

@@ -20,7 +20,7 @@ Route::name('api.')->group(function () {
             Route::post('/', \App\Http\Controllers\Api\Users\Login\StoreController::class)->name('store');
         });
         Route::post('/', \App\Http\Controllers\Api\Users\StoreController::class)->name('store');
-        Route::get('/', \App\Http\Controllers\Api\Users\IndexController::class)
+        Route::get('/', \App\Http\Controllers\Api\User\IndexController::class)
             ->name('index')
             ->middleware('auth');
     });
@@ -31,8 +31,8 @@ Route::name('api.')->group(function () {
 
 // 認証あり
 Route::name('api.')->middleware('auth')->group(function () {
-    Route::prefix('/users')->name('users.')->group(function () {
-        Route::get('/', \App\Http\Controllers\Api\Users\IndexController::class)
+    Route::prefix('/user')->name('user.')->group(function () {
+        Route::get('/', \App\Http\Controllers\Api\User\IndexController::class)
             ->name('index');
     });
 });
