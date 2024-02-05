@@ -9,7 +9,7 @@ class UpdateController extends Controller
 {
     public function __invoke(UpdateRequest $request)
     {
-        $user =  auth()->user();
+        $user = auth()->user();
         $user->fill($this->transformParams($request));
         $user->save();
         return response()->json(['user' => $user]);
