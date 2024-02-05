@@ -34,5 +34,7 @@ Route::name('api.')->middleware('auth')->group(function () {
     Route::prefix('/user')->name('user.')->group(function () {
         Route::get('/', \App\Http\Controllers\Api\User\IndexController::class)
             ->name('index');
+        Route::put('/', \App\Http\Controllers\Api\User\UpdateController::class)
+            ->name('store');
     });
 });
