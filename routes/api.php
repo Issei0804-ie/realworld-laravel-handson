@@ -27,6 +27,9 @@ Route::name('api.')->group(function () {
     Route::prefix('/articles')->name('articles.')->group(function () {
         Route::get('/{slug}', \App\Http\Controllers\Api\Articles\ShowController::class)->name('show');
     });
+    Route::prefix('/profiles')->name('profiles.')->group(function () {
+        Route::get('/{user:username}', \App\Http\Controllers\Api\Profiles\ShowController::class)->name('show');
+    });
 });
 
 // 認証あり

@@ -20,7 +20,7 @@ class ProfileResource extends JsonResource
                 'username' => $this->username,
                 'bio' => $this->bio,
                 'image' => $this->image_s3_path,
-                'following' => $this->userAccessedProfile ? $this->isFollowing($this->userAccessedProfile): false,
+                'following' => $this->userAccessedProfile ? $this->userAccessedProfile->isFollowing($this->resource) : false,
             ],
         ];
     }
