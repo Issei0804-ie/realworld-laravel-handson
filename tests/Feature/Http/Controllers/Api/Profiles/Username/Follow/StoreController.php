@@ -22,7 +22,7 @@ class StoreController extends TestCase
 
 
     #[Test]
-    public function 既にフォローしている状態でAPIを叩くとフォローを解除することができる()
+    public function 既にフォローしている状態でAPIを叩くとフォローが解除されない()
     {
         $this->source->followYou($this->target);
         $this->assertDatabaseCount('follows', 1);
@@ -39,11 +39,15 @@ class StoreController extends TestCase
                     'username' => $this->target->username,
                     'bio' => $this->target->bio,
                     'image' => $this->target->image_s3_path,
-                    'following' => false,
+                    'following' => true,
                 ]
             ]);
 
-        $this->assertDatabaseEmpty('follows');
+        $this->assertDatabaseCount('follows', 1);
+        $this->assertDatabaseHas('follows', [
+            'follow_user_id' => $this->target->id,
+            'follower_user_id' => $this->source->id,
+        ]);
     }
 
     #[Test]

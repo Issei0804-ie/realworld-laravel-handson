@@ -12,9 +12,7 @@ class StoreController extends Controller
     public function __invoke(User $user, Request $request)
     {
         $userAccessedThatAPI = $request->user();
-        if ($userAccessedThatAPI->isFollowing($user)) {
-            $this->unfollow($userAccessedThatAPI, $user);
-        } else {
+        if (!$userAccessedThatAPI->isFollowing($user)) {
             $this->follow($userAccessedThatAPI, $user);
         }
 
@@ -26,10 +24,4 @@ class StoreController extends Controller
     {
         $source->followYou($target);
     }
-
-    private function unfollow(User $source, User $target): void
-    {
-        $source->unfollowYou($target);
-    }
-
 }
