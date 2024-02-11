@@ -34,6 +34,9 @@ Route::name('api.')->group(function () {
             Route::delete('/follow', \App\Http\Controllers\Api\Profiles\Username\Follow\DeleteController::class)->name('follow.delete');
         });
     });
+    Route::prefix('/tags')->name('tags.')->group(function () {
+        Route::get('/', \App\Http\Controllers\Api\Tag\IndexController::class)->name('index');
+    });
 });
 
 // 認証あり
