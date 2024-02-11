@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $tags = Tag::factory(10)->create();
+        $tags = Tag::all();
         // 3つだけ取り出す
         $tags1 = $tags->take(3);
 
