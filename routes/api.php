@@ -31,6 +31,7 @@ Route::name('api.')->group(function () {
         Route::prefix('/{user:username}')->name('username.')->group(function () {
             Route::get('/', \App\Http\Controllers\Api\Profiles\Username\ShowController::class)->name('show');
             Route::post('/follow', \App\Http\Controllers\Api\Profiles\Username\Follow\StoreController::class)->name('follow.store');
+            Route::delete('/follow', \App\Http\Controllers\Api\Profiles\Username\Follow\DeleteController::class)->name('follow.delete');
         });
     });
 });
