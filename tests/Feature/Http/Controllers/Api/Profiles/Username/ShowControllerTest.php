@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api\Profiles;
+namespace Tests\Feature\Http\Controllers\Api\Profiles\Username;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +17,7 @@ class ShowControllerTest extends TestCase
         // このユーザーのプロフィール情報を取得したい
         $user = User::factory()->create();
 
-        $this->get(route('api.profiles.show', ['user' => $user]))
+        $this->get(route('api.profiles.username.show', ['user' => $user]))
             ->assertOk()
             ->assertJson([
                 'profile' => [
@@ -36,7 +36,7 @@ class ShowControllerTest extends TestCase
         [$targetUser, $accessedUser] = $createTargetUserAndAccessedUser();
 
         $this->actingAs($accessedUser)
-            ->get(route('api.profiles.show', ['user' => $targetUser]))
+            ->get(route('api.profiles.username.show', ['user' => $targetUser]))
             ->assertOk()
             ->assertJson($expected($targetUser));
     }

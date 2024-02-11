@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Profiles;
+namespace App\Http\Controllers\Api\Profiles\Username;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProfileResource;
