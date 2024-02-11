@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class StoreController extends TestCase
+class StoreControllerTest extends TestCase
 {
     use RefreshDatabase;
     private User $source;
